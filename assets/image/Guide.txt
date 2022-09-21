@@ -1,0 +1,3 @@
+Font Used - Cera pro
+Top Header Font Size - 20 Bold
+in Subtext its 15
