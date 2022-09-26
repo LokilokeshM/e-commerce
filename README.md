@@ -4,13 +4,17 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+**_ Run _**
 
-A few resources to get you started if this is your first Flutter project:
+flutter pub get
+flutter pub global run intl_utils:generate
+flutter pub run build_runner build
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+**_ Run _**
+open Terminal
+./json
+npm install -g json-server
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Starting Our Api
+
+json-server --watch Recipe-Info.json --port 8000

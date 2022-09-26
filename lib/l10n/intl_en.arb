@@ -1,3 +1,19 @@
 {
-    "hellow": "Hello"
+    "hellow": "Hello",
+    "recipeOfTheDay":"Recipe of the Day",
+    "mixedVegsBakedText":"Mixed Veges Baked",
+    "planText":"Plan",
+    "cookNowText":"Cook Now",
+    "homeText":"Home",
+    "learnText":"Learn",
+    "shopText":"Shop",
+    "findRecipesText":"Find the recipes",
+    "basedOnText":"based on what",
+    "youHaveAtHomeText":"YOU HAVE AT HOME",
+    "suggestedContentText":"Suggested Contents",
+    "viewAllText":"View All",
+    "suggestedMealText":"Suggested Meal Plan",
+    "mealPlannerText":"Meal Planner",
+    "popularText":"Popular Recipes",
+    "allRecipiesText":"All Recipies"
 }

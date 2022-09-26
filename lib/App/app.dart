@@ -1,13 +1,18 @@
 import 'dart:convert';
-
+import 'dart:async';
+import 'dart:developer';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kitchenomics/Apis/api_client.dart';
 import 'package:kitchenomics/Router/navigator_service.dart';
 import 'package:kitchenomics/Router/router.dart';
 import 'package:kitchenomics/Router/router_path.dart';
 import 'package:kitchenomics/common/global.dart';
 import 'package:kitchenomics/constant/constant.dart';
+import 'package:kitchenomics/generated/l10n.dart';
+import 'package:kitchenomics/model/items_list.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
@@ -33,12 +38,14 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
+    ///Initializing screen Util
     ScreenUtil.init(context);
     return _appWidget(context);
   }
 
   _appWidget(BuildContext context) {
     return ScreenUtilInit(
+      ///Initializing the screen with the common height and width
       designSize: Size(_uiWidth, _uiHeight),
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
@@ -74,6 +81,10 @@ class _AppState extends State<App> {
           navigatorKey: NavigateService.key,
           onGenerateRoute: AppRouter.generateRoute,
           debugShowCheckedModeBanner: false,
+          supportedLocales: S.delegate.supportedLocales,
+          localizationsDelegates: const [
+            S.delegate,
+          ],
         );
       },
     );
@@ -81,17 +92,40 @@ class _AppState extends State<App> {
 
   _initialRoute() {
     loadData();
+    loadDataFormApi();
+
+    ///Initial Navigation to Dashboard Screen
     Future.delayed(const Duration(seconds: 1), () {
       NavigateService.pushNamedRoute(RouterPath.DASHBOARD);
     });
   }
 
+  ///Used to store the json in the local storage / local cache storage
+  ///If data available it will not load data from the json file.
   loadData() async {
     if (Global.getInstance().jsonString == null) {
+      ///loading data from the json file
       var data = await rootBundle.loadString("assets/Recipe-Info.JSON");
       final value = json.decode(data);
+
+      ///Storing data to the local storage data
       Global.getInstance().jsonString = data;
     }
-    print(Global.getInstance().jsonString);
+
+    ///Log the stored Value
+    ///If need to check log uncomment Line 116
+    // log(Global.getInstance().jsonString.toString());
+  }
+
+  void loadDataFormApi() async {
+    final client = ApiClient(Dio(BaseOptions()));
+    try {
+      // ItemList response = await client.getItems();
+      // log(response.toString());
+      log(await client.getItems().toString());
+    } catch (e) {
+      log(e.toString());
+    }
+    // print(response.toString());
   }
 }

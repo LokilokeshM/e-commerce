@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kitchenomics/UI/dashboard/tileCards.dart';
 import 'package:kitchenomics/UI/dashboard/title_with_button.dart';
+import 'package:kitchenomics/common/kitchnomics_String.dart';
 import 'package:kitchenomics/common/widget/rating/rating.dart';
 import 'package:kitchenomics/constant/bottom_bar.dart';
 import 'package:kitchenomics/constant/constant.dart';
@@ -17,8 +18,8 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(),
-      body: _buildBody(),
+      appBar: _appBar(context),
+      body: _buildBody(context),
       bottomNavigationBar: BottomNavigationBar(
         items: bottomAppBar,
         type: BottomNavigationBarType.fixed,
@@ -28,6 +29,7 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
+  ///Bottom Navigation Content Widget
   BottomNavigationBar _bottomNavBar() {
     return BottomNavigationBar(
       selectedItemColor: const Color.fromARGB(255, 15, 228, 125),
@@ -77,16 +79,16 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  AppBar _appBar() {
+  AppBar _appBar(BuildContext context) {
     return AppBar(
         leading: const Icon(
           Icons.notifications_outlined,
           color: kPrimaryBlackColor,
         ),
-        title: const Center(
+        title: Center(
           child: Text(
-            "Kitchenomics",
-            style: TextStyle(
+            KitchenomicsString.of(context: context).hellow,
+            style: const TextStyle(
               color: kHeadingTextColor,
             ),
           ),
@@ -107,14 +109,15 @@ class _DashboardPageState extends State<DashboardPage> {
         ]);
   }
 
-  Widget _buildBody() {
+  ///Main Content Start
+  Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
       child: Column(children: [
         Stack(children: [
-          const Positioned(
+          Positioned(
               left: 20,
               child: Text(
-                "Recipe of the Day",
+                KitchenomicsString.of(context: context).recipeOfTheDay,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               )),
           ShaderMask(
@@ -143,9 +146,9 @@ class _DashboardPageState extends State<DashboardPage> {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const Text(
-                  "Mixed Veges Baked",
-                  style: TextStyle(
+                Text(
+                  KitchenomicsString.of(context: context).mixedVegsBakedText,
+                  style: const TextStyle(
                     fontSize: 20,
                     color: kPrimaryColor,
                   ),
@@ -206,18 +209,21 @@ class _DashboardPageState extends State<DashboardPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
-                        "Find the recipes",
-                        style: TextStyle(color: Colors.white70, fontSize: 18),
+                        KitchenomicsString.of(context: context).findRecipesText,
+                        style: const TextStyle(
+                            color: Colors.white70, fontSize: 18),
                       ),
                       Text(
-                        "based on what",
-                        style: TextStyle(color: Colors.white70, fontSize: 18),
+                        KitchenomicsString.of(context: context).basedOnText,
+                        style: const TextStyle(
+                            color: Colors.white70, fontSize: 18),
                       ),
                       Text(
-                        "YOU HAVE AT HOME",
-                        style: TextStyle(
+                        KitchenomicsString.of(context: context)
+                            .youHaveAtHomeText,
+                        style: const TextStyle(
                             color: kPrimaryColor, fontWeight: FontWeight.bold),
                       )
                     ],
@@ -235,23 +241,26 @@ class _DashboardPageState extends State<DashboardPage> {
         const Divider(
           thickness: 1,
         ),
-        _popularRecipies(),
+        _popularRecipies(context),
         const Divider(
           thickness: 1,
         ),
-        _suggestedMealPlan(),
+        _suggestedMealPlan(context),
         const Divider(
           thickness: 1,
         ),
-        _suggestedContents()
+        _suggestedContents(context)
       ]),
     );
   }
 
-  Column _suggestedContents() {
+  ///Suggested Contents card view design
+  Column _suggestedContents(BuildContext context) {
     return Column(
       children: [
-        const TitleWithBtn(title: "Suggested Contents", buttonText: "View All"),
+        TitleWithBtn(
+            title: KitchenomicsString.of(context: context).suggestedContentText,
+            buttonText: KitchenomicsString.of(context: context).viewAllText),
         SizedBox(
           height: 160,
           child: ListView.builder(
@@ -275,11 +284,14 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  Column _suggestedMealPlan() {
+  ///Suggested Meal Plan Card View
+  Column _suggestedMealPlan(BuildContext context) {
     return Column(
       children: [
-        const TitleWithBtn(
-            title: "Suggested Meal Plan", buttonText: "Meal Planner"),
+        TitleWithBtn(
+            title: KitchenomicsString.of(context: context).suggestedMealText,
+            buttonText:
+                KitchenomicsString.of(context: context).mealPlannerText),
         SizedBox(
           height: 210,
           child: ListView.builder(
@@ -301,11 +313,14 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  Column _popularRecipies() {
+  ///Popular Recipies Card view
+  Column _popularRecipies(BuildContext context) {
     return Column(
       children: [
-        const TitleWithBtn(
-            title: "Popular Recipes", buttonText: "All Recipies"),
+        TitleWithBtn(
+            title: KitchenomicsString.of(context: context).popularText,
+            buttonText:
+                KitchenomicsString.of(context: context).allRecipiesText),
         SizedBox(
           height: 140,
           child: ListView.builder(
@@ -327,5 +342,6 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
+  ///Dummy on tap Function
   void _onItemTapped(int value) {}
 }
