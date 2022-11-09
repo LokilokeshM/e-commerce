@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kitchenomics/Router/router_path.dart';
-import 'package:kitchenomics/UI/dashboard/dashboard.dart';
+import 'package:ecommerce/Router/router_path.dart';
+import 'package:ecommerce/UI/dashboard/dashboard_page.dart';
 
 ///App routing Navigation
 class AppRouter {

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:kitchenomics/common/api_config.dart';
-import 'package:kitchenomics/model/items_list.dart';
+import 'package:ecommerce/common/api_config.dart';
+import 'package:ecommerce/model/items_list.dart';
 import 'package:retrofit/http.dart';
 part 'api_client.g.dart';
 

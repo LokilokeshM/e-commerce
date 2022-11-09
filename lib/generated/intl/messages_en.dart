@@ -27,7 +27,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "cookNowText": MessageLookupByLibrary.simpleMessage("Cook Now"),
         "findRecipesText":
             MessageLookupByLibrary.simpleMessage("Find the recipes"),
-        "hellow": MessageLookupByLibrary.simpleMessage("Hello"),
         "homeText": MessageLookupByLibrary.simpleMessage("Home"),
         "learnText": MessageLookupByLibrary.simpleMessage("Learn"),
         "mealPlannerText": MessageLookupByLibrary.simpleMessage("Meal Planner"),
@@ -42,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Suggested Contents"),
         "suggestedMealText":
             MessageLookupByLibrary.simpleMessage("Suggested Meal Plan"),
+        "title": MessageLookupByLibrary.simpleMessage("Ecommerce"),
         "viewAllText": MessageLookupByLibrary.simpleMessage("View All"),
         "youHaveAtHomeText":
             MessageLookupByLibrary.simpleMessage("YOU HAVE AT HOME")

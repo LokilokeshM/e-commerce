@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 class NavigateService {
-  static GlobalKey<NavigatorState> key = GlobalKey(debugLabel: "kitchenomics");
+  static GlobalKey<NavigatorState> key = GlobalKey(debugLabel: "ecommerce");
 
   static NavigatorState? get navigator => key.currentState;
 

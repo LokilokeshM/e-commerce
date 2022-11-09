@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kitchenomics/constant/constant.dart';
+import 'package:ecommerce/constant/constant.dart';
 
 Widget recipiesCard({
   Key? key,

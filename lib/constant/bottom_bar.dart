@@ -1,44 +1,37 @@
+import 'package:ecommerce/constant/constant.dart';
 import 'package:flutter/material.dart';
 
 List<BottomNavigationBarItem> bottomAppBar = [
-  BottomNavigationBarItem(
-    icon: Image.asset(
-      "assets/icon/Plan.png",
-      height: 30,
-      width: 30,
-    ),
-    label: 'Plan',
-  ),
-  BottomNavigationBarItem(
-    icon: Image.asset(
-      "assets/icon/Cook Now.png",
-      height: 30,
-      width: 30,
-    ),
-    label: 'Cook Now',
-  ),
-  BottomNavigationBarItem(
-    icon: Image.asset(
-      "assets/icon/Home.png",
-      height: 30,
-      width: 30,
+  const BottomNavigationBarItem(
+    icon: Icon(
+      Icons.home,
+      size: 30,
+      color: kPrimaryBlackColor,
     ),
     label: 'Home',
   ),
-  BottomNavigationBarItem(
-    icon: Image.asset(
-      "assets/icon/Learn.png",
-      height: 30,
-      width: 30,
+  const BottomNavigationBarItem(
+    icon: Icon(
+      Icons.shopify_outlined,
+      size: 30,
+      color: kPrimaryBlackColor,
     ),
-    label: 'Learn',
+    label: 'Cart',
   ),
-  BottomNavigationBarItem(
-    icon: Image.asset(
-      "assets/icon/Store.png",
-      height: 30,
-      width: 30,
+  const BottomNavigationBarItem(
+    icon: Icon(
+      Icons.person,
+      size: 30,
+      color: kPrimaryBlackColor,
     ),
-    label: 'Shop',
+    label: 'Profile',
+  ),
+  const BottomNavigationBarItem(
+    icon: Icon(
+      Icons.settings,
+      size: 30,
+      color: kPrimaryBlackColor,
+    ),
+    label: 'Setting',
   ),
 ];

@@ -5,14 +5,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kitchenomics/Apis/api_client.dart';
-import 'package:kitchenomics/Router/navigator_service.dart';
-import 'package:kitchenomics/Router/router.dart';
-import 'package:kitchenomics/Router/router_path.dart';
-import 'package:kitchenomics/common/global.dart';
-import 'package:kitchenomics/constant/constant.dart';
-import 'package:kitchenomics/generated/l10n.dart';
-import 'package:kitchenomics/model/items_list.dart';
+import 'package:ecommerce/Apis/api_client.dart';
+import 'package:ecommerce/Router/navigator_service.dart';
+import 'package:ecommerce/Router/router.dart';
+import 'package:ecommerce/Router/router_path.dart';
+import 'package:ecommerce/common/global.dart';
+import 'package:ecommerce/constant/constant.dart';
+import 'package:ecommerce/generated/l10n.dart';
+import 'package:ecommerce/model/items_list.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
@@ -118,11 +118,11 @@ class _AppState extends State<App> {
   }
 
   void loadDataFormApi() async {
-    final client = ApiClient(Dio(BaseOptions()));
+    // final client = ApiClient(Dio(BaseOptions()));
     try {
       // ItemList response = await client.getItems();
       // log(response.toString());
-      log(await client.getItems().toString());
+      // log(await client.getItems().toString());
     } catch (e) {
       log(e.toString());
     }
