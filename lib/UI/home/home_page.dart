@@ -1,4 +1,5 @@
 import 'package:ecommerce/UI/dashboard/tileCards.dart';
+import 'package:ecommerce/UI/home/home_bloc.dart';
 
 import 'package:ecommerce/common/size_congig.dart';
 import 'package:ecommerce/common/widget/rating/rating.dart';
@@ -13,8 +14,20 @@ import 'components/discount_banner.dart';
 import 'components/popular_product.dart';
 import 'components/special_offers.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final HomeBloc _bloc = HomeBloc();
+  @override
+  void initState() {
+    super.initState();
+    _bloc.init();
+  }
 
   @override
   Widget build(BuildContext context) {

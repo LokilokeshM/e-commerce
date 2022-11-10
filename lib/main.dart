@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Apis/network/api_config.dart';
 import 'App/app.dart';
 import 'common/global.dart';
 import 'Router/navigator_service.dart';
@@ -18,6 +19,7 @@ void main() async {
     final prefs = await SharedPreferences.getInstance();
     await Global.init(prefs);
     setupNavigateService();
+    ApiAPIConfig.init(APIFlavor.dev);
     runApp(App(
       key: appGlobalKey,
     ));

@@ -48,7 +48,7 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget _pages() {
     switch (currentIndex) {
       case 0:
-        return const HomePage();
+        return HomePage();
       case 1:
         return CartScreen();
       case 2:

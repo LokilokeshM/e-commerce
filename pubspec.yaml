@@ -41,6 +41,8 @@ dependencies:
   retrofit: ^3.0.1+1
   dio: ^4.0.6
   flutter_svg: ^1.1.6
+  rxdart: ^0.27.5
+  uuid: ^3.0.6
 
 flutter_localizations:
   sdk: flutter

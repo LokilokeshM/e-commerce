@@ -1,18 +1,15 @@
 import 'dart:convert';
 import 'dart:async';
 import 'dart:developer';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ecommerce/Apis/api_client.dart';
 import 'package:ecommerce/Router/navigator_service.dart';
 import 'package:ecommerce/Router/router.dart';
 import 'package:ecommerce/Router/router_path.dart';
 import 'package:ecommerce/common/global.dart';
 import 'package:ecommerce/constant/constant.dart';
 import 'package:ecommerce/generated/l10n.dart';
-import 'package:ecommerce/model/items_list.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
