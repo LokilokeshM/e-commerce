@@ -1,3 +1,5 @@
+import 'package:ecommerce/UI/cart/cart_screen.dart';
+import 'package:ecommerce/UI/details/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/Router/router_path.dart';
 import 'package:ecommerce/UI/dashboard/dashboard_page.dart';
@@ -8,6 +10,13 @@ class AppRouter {
     switch (settings.name) {
       case RouterPath.DASHBOARD:
         return MaterialPageRoute(builder: (_) => DashboardPage());
+      case RouterPath.PRODUCT_DETAILS:
+        return MaterialPageRoute(
+            builder: (_) => DetailsScreen(
+                  agrs: settings.arguments as ProductDetailsArguments,
+                ));
+      case RouterPath.CART_PAGE:
+        return MaterialPageRoute(builder: (_) => CartScreen());
       default:
         return defaultRoute(settings);
     }

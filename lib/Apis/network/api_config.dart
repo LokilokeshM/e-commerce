@@ -7,7 +7,7 @@ const String items = "/items";
 const String getProductList = "/getProductList";
 const String getCollectionList = "/getCollectionList";
 const String getCollectList = "/getCollectList";
-const String getProductImageList = "/getProductImageList";
+const String getProductImageListString = "/getProductImageList";
 const String updateProductImage = "/updateProductImage";
 
 enum APIFlavor { dev, qa, stage, stageBlue, prod }

@@ -91,7 +91,9 @@ class _HomePageState extends State<HomePage> {
         Categories(),
         SpecialOffers(),
         SizedBox(height: getProportionateScreenWidth(30)),
-        PopularProducts(),
+        PopularProducts(
+          bloc: _bloc,
+        ),
       ]),
     );
   }

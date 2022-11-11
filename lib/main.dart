@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:ecommerce/Providers/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Apis/network/api_config.dart';
@@ -20,8 +22,13 @@ void main() async {
     await Global.init(prefs);
     setupNavigateService();
     ApiAPIConfig.init(APIFlavor.dev);
-    runApp(App(
-      key: appGlobalKey,
+    runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CartProvider()),
+      ],
+      child: App(
+        key: appGlobalKey,
+      ),
     ));
   }, (error, stack) => debugPrint(error.toString()));
   _statusBarSetup();

@@ -1,7 +1,9 @@
+import 'package:ecommerce/Providers/cart_provider.dart';
 import 'package:ecommerce/common/components/default_button.dart';
 import 'package:ecommerce/common/size_congig.dart';
 import 'package:ecommerce/model/produt.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'color_dots.dart';
 import 'product_description.dart';
@@ -27,12 +29,12 @@ class Body extends StatelessWidget {
                 pressOnSeeMore: () {},
               ),
               TopRoundedContainer(
-                color: Color(0xFFF6F7F9),
+                color: Colors.grey,
                 child: Column(
                   children: [
                     ColorDots(product: product),
                     TopRoundedContainer(
-                      color: Colors.white,
+                      color: Colors.grey.shade500,
                       child: Padding(
                         padding: EdgeInsets.only(
                           left: SizeConfig.screenWidth * 0.15,
@@ -42,7 +44,10 @@ class Body extends StatelessWidget {
                         ),
                         child: DefaultButton(
                           text: "Add To Cart",
-                          press: () {},
+                          press: () {
+                            Provider.of<CartProvider>(context, listen: false)
+                                .addProduct(product);
+                          },
                         ),
                       ),
                     ),

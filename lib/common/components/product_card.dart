@@ -1,3 +1,5 @@
+import 'package:ecommerce/Router/navigator_service.dart';
+import 'package:ecommerce/Router/router_path.dart';
 import 'package:ecommerce/UI/details/details_screen.dart';
 import 'package:ecommerce/common/size_congig.dart';
 import 'package:ecommerce/constant/constant.dart';
@@ -24,9 +26,8 @@ class ProductCard extends StatelessWidget {
       child: SizedBox(
         width: getProportionateScreenWidth(width),
         child: GestureDetector(
-          onTap: () => Navigator.pushNamed(
-            context,
-            "",
+          onTap: () => NavigateService.pushNamedRoute(
+            RouterPath.PRODUCT_DETAILS,
             arguments: ProductDetailsArguments(product: product),
           ),
           child: Column(

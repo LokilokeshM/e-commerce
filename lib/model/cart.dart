@@ -1,8 +1,8 @@
 import 'package:ecommerce/model/produt.dart';
 
 class Cart {
-  final Product product;
-  final int numOfItem;
+  Product product;
+  int numOfItem;
 
   Cart({required this.product, required this.numOfItem});
 }

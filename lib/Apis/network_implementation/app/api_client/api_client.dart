@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:ecommerce/Apis/entity/product_collect_list.dart';
+import 'package:ecommerce/Apis/entity/product_image_list.dart';
 import 'package:ecommerce/Apis/entity/product_list.dart';
 import 'package:ecommerce/Apis/network/api_basic.dart';
 import 'package:ecommerce/Apis/network/api_config.dart';
@@ -16,8 +18,17 @@ class AppAPIClient extends AppClient with APIBasic {
 
   //Example Code
   @override
-  Future<CommonResponse<Product>> getProductDetails() =>
+  Future<CommonResponse<ProductList>> getProductDetails() =>
       requestCallWithDetails((_) => getApi().getProductDetails());
+
+  @override
+  Future<CommonResponse<ProductCollectsList>> getCollectsListDetails(
+          int productId) =>
+      requestCallWithDetails((_) => getApi().getCollectsListDetails(productId));
+
+  @override
+  Future<CommonResponse<ProductImageList>> getProductImageList(int productId) =>
+      requestCallWithDetails((_) => getApi().getProductImageList(productId));
 
   // AppApiClient getApi() =>
   //     AppApiClient(_getAppDio(), baseUrl: APIConfig.demoApi);

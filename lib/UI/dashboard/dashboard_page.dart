@@ -1,3 +1,6 @@
+import 'package:ecommerce/Providers/cart_provider.dart';
+import 'package:ecommerce/Router/navigator_service.dart';
+import 'package:ecommerce/Router/router_path.dart';
 import 'package:ecommerce/UI/cart/cart_screen.dart';
 import 'package:ecommerce/UI/home/components/icon_btn_with_counter.dart';
 
@@ -13,6 +16,7 @@ import 'package:ecommerce/common/widget/rating/rating.dart';
 import 'package:ecommerce/constant/bottom_bar.dart';
 import 'package:ecommerce/constant/constant.dart';
 import 'package:ecommerce/model/card_helper_entity.dart';
+import 'package:provider/provider.dart';
 
 import '../home/components/search_field.dart';
 import '../home/home_page.dart';
@@ -130,16 +134,19 @@ class _DashboardPageState extends State<DashboardPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconBtnWithCounter(
-                    svgSrc: "assets/icons/Cart Icon.svg",
-                    press: () =>
-                        Navigator.pushNamed(context, CartScreen.routeName),
-                  ),
+                  Consumer<CartProvider>(
+                      builder: (context, cartProvider, child) {
+                    return IconBtnWithCounter(
+                      svgSrc: "assets/icons/Cart Icon.svg",
+                      numOfitem: cartProvider.productLen,
+                      press: () =>
+                          NavigateService.pushNamedRoute(RouterPath.CART_PAGE),
+                    );
+                  }),
                   IconBtnWithCounter(
                     svgSrc: "assets/icons/Bell.svg",
-                    numOfitem: 3,
                     press: () {},
-                  ),
+                  )
                 ],
               ),
             ),
