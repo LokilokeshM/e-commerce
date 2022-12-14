@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:ecommerce/Apis/entity/prodcut_list_response.dart';
 import 'package:ecommerce/Apis/entity/product_collect_list.dart';
 import 'package:ecommerce/Apis/entity/product_image_list.dart';
 import 'package:ecommerce/Apis/entity/product_list.dart';
@@ -18,8 +19,9 @@ class AppAPIClient extends AppClient with APIBasic {
 
   //Example Code
   @override
-  Future<CommonResponse<ProductList>> getProductDetails() =>
-      requestCallWithDetails((_) => getApi().getProductDetails());
+  Future<CommonResponse<ProductListResponse>> getProductDetails() =>
+      requestCallWithDetails(
+          (_) => getApi().getProductDetails(shopifyAccessToken));
 
   @override
   Future<CommonResponse<ProductCollectsList>> getCollectsListDetails(

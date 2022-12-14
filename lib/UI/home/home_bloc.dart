@@ -23,61 +23,61 @@ class HomeBloc extends BlocBase {
   }
 
   void _initAsync() async {
-    getProductList();
+    // getProductList();
   }
 
-  Future<void> getProductList() async {
-    try {
-      var commonResponse = await api.getProductDetails();
-      if (commonResponse.error != null) {
-        debugPrint(commonResponse.error.toString());
-        return;
-      }
-      if (commonResponse.response!.payload.products != null) {
-        debugPrint(commonResponse.response!.payload.products.toString());
+  // Future<void> getProductList() async {
+  //   try {
+  //     var commonResponse = await api.getProductDetails();
+  //     if (commonResponse.error != null) {
+  //       debugPrint(commonResponse.error.toString());
+  //       return;
+  //     }
+  //     if (commonResponse.response!.payload.products != null) {
+  //       debugPrint(commonResponse.response!.payload.products.toString());
 
-        List<Product> productList = commonResponse.response!.payload.products!;
-        List<p.Product> productModelList = [];
-        List<Map<int, List<Collect>>>? collectList1;
+  //       List<Product> productList = commonResponse.response!.payload.products!;
+  //       List<p.Product> productModelList = [];
+  //       List<Map<int, List<Collect>>>? collectList1;
 
-        int index = 0;
-        productList.forEach((element) async {
-          debugPrint(element.toString());
-          productModelList.add(p.Product(
-            id: element.id ?? 0,
-            images: [
-              "assets/images/ps4_console_white_1.png",
-              "assets/images/ps4_console_white_2.png",
-              "assets/images/ps4_console_white_3.png",
-              "assets/images/ps4_console_white_4.png",
-            ],
-            colors: [
-              Color(0xFFF6625E),
-              Color(0xFF836DB8),
-              Color(0xFFDECB9C),
-              Colors.white,
-            ],
-            title: element.title ?? "",
-            price: 0.0,
-            description: p.description,
-            rating: 4.8,
-            isFavourite: index % 2 == 0,
-            isPopular: true,
-          ));
-          index += 1;
-          final collect = await getVariantList(element.id ?? 0) ?? null;
-          if (collect!.isNotEmpty) {
-            collectList1!.add({element.id!: collect});
-          }
-        });
+  //       int index = 0;
+  //       productList.forEach((element) async {
+  //         debugPrint(element.toString());
+  //         productModelList.add(p.Product(
+  //           id: element.id ?? 0,
+  //           images: [
+  //             "assets/images/ps4_console_white_1.png",
+  //             "assets/images/ps4_console_white_2.png",
+  //             "assets/images/ps4_console_white_3.png",
+  //             "assets/images/ps4_console_white_4.png",
+  //           ],
+  //           colors: [
+  //             Color(0xFFF6625E),
+  //             Color(0xFF836DB8),
+  //             Color(0xFFDECB9C),
+  //             Colors.white,
+  //           ],
+  //           title: element.title ?? "",
+  //           price: 0.0,
+  //           description: p.description,
+  //           rating: 4.8,
+  //           isFavourite: index % 2 == 0,
+  //           isPopular: true,
+  //         ));
+  //         index += 1;
+  //         final collect = await getVariantList(element.id ?? 0) ?? null;
+  //         if (collect!.isNotEmpty) {
+  //           collectList1!.add({element.id!: collect});
+  //         }
+  //       });
 
-        _productList.sink.add(productModelList);
-        _collectList.sink.add(collectList1);
-      }
-    } catch (e) {
-      log(e.toString());
-    }
-  }
+  //       _productList.sink.add(productModelList);
+  //       _collectList.sink.add(collectList1);
+  //     }
+  //   } catch (e) {
+  //     log(e.toString());
+  //   }
+  // }
 
   Future<List<String>> getImages(Product element) async {
     final result = await getImageList(element.id!);

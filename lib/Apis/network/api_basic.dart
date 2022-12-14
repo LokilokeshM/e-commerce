@@ -40,7 +40,7 @@ abstract class APIBasic {
     if (baseUrl != null) {
       dio.options.baseUrl = baseUrl;
     }
-    _setupCommonHeaders(dio);
+    // _setupCommonHeaders(dio);
     return dio;
   }
 
@@ -242,10 +242,10 @@ abstract class APIBasic {
     }
   }
 
-  void _setupCommonHeaders(Dio dio) {
-    dio.options
-      ..headers["X-OSVERSION"] = Platform.operatingSystemVersion
-      ..headers["X-APPVERSION"] = appVersion ?? "1.0"
-      ..headers["X-OSNAME"] = Platform.isIOS ? "iOS" : "Android";
-  }
+  // void _setupCommonHeaders(Dio dio) {
+  //   dio.options
+  //     ..headers["X-OSVERSION"] = Platform.operatingSystemVersion
+  //     ..headers["X-APPVERSION"] = appVersion ?? "1.0"
+  //     ..headers["X-OSNAME"] = Platform.isIOS ? "iOS" : "Android";
+  // }
 }

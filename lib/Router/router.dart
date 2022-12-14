@@ -1,4 +1,5 @@
 import 'package:ecommerce/UI/cart/cart_screen.dart';
+import 'package:ecommerce/UI/catalogue_manager/catalogue_management_page.dart';
 import 'package:ecommerce/UI/details/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/Router/router_path.dart';
@@ -17,6 +18,8 @@ class AppRouter {
                 ));
       case RouterPath.CART_PAGE:
         return MaterialPageRoute(builder: (_) => CartScreen());
+      case RouterPath.CATALOG_MANAGENMENT_PAGE:
+        return MaterialPageRoute(builder: (_) => CatalogueManaganemtPage());
       default:
         return defaultRoute(settings);
     }

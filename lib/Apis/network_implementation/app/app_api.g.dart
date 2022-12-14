@@ -16,18 +16,20 @@ class _AppApis implements AppApis {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<ProductList>> getProductDetails() async {
+  Future<HttpResponse<ProductListResponse>> getProductDetails(
+      accessToken) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'X-Shopify-Access-Token': accessToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ProductList>>(
+        _setStreamType<HttpResponse<ProductListResponse>>(
             Options(method: 'GET', headers: _headers, extra: _extra)
-                .compose(_dio.options, '/getProductList',
+                .compose(_dio.options, '/products.json',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ProductList.fromJson(_result.data!);
+    final value = ProductListResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

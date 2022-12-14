@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:ecommerce/Apis/entity/prodcut_list_response.dart';
 import 'package:ecommerce/Apis/entity/product_collect_list.dart';
 import 'package:ecommerce/Apis/entity/product_image_list.dart';
 import 'package:ecommerce/Apis/entity/product_list.dart';
@@ -12,8 +13,9 @@ part 'app_api.g.dart';
 abstract class AppApis {
   factory AppApis(Dio dio, {String baseUrl}) = _AppApis;
 
-  @GET(getProductList)
-  Future<HttpResponse<ProductList>> getProductDetails();
+  @GET(listProductApi)
+  Future<HttpResponse<ProductListResponse>> getProductDetails(
+      @Header("X-Shopify-Access-Token") String accessToken);
 
   @GET(getCollectList)
   Future<HttpResponse<ProductCollectsList>> getCollectsListDetails(

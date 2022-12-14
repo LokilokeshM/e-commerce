@@ -7,6 +7,9 @@ const kPrimaryBlackColor = Color.fromARGB(255, 18, 17, 17);
 const kHeadingTextColor = Color.fromARGB(255, 88, 82, 82);
 const double defaultPadding = 16.0;
 const double kDefaultPadding = 20.0;
+const primaryColor = Color(0xFF2697FF);
+const secondaryColor = Color(0xFF2A2D3E);
+const bgColor = Color(0xFF212332);
 
 const kPrimaryGradientColor = LinearGradient(
   begin: Alignment.topLeft,
