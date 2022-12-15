@@ -6,15 +6,20 @@ import 'package:file_picker/file_picker.dart';
 class TextEditor extends StatefulWidget {
   TextEditor({
     Key? key,
+    this.controller,
   }) : super(key: key);
-
+  final HtmlEditorController? controller;
   @override
   _TextEditorState createState() => _TextEditorState();
 }
 
 class _TextEditorState extends State<TextEditor> {
-  String result = '';
-  final HtmlEditorController controller = HtmlEditorController();
+  HtmlEditorController? _controller;
+  @override
+  void initState() {
+    super.initState();
+    _controller = widget.controller;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +28,7 @@ class _TextEditorState extends State<TextEditor> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           HtmlEditor(
-            controller: controller,
+            controller: _controller ?? HtmlEditorController(),
             htmlEditorOptions: HtmlEditorOptions(
               hint: 'Your text here...',
               shouldEnsureVisible: true,

@@ -1,21 +1,66 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:html';
+
+import 'package:ecommerce/Apis/entity/prodcut_list_response.dart' as p;
+import 'package:ecommerce/Apis/entity_helper/add_product_request_body.dart'
+    as r;
+import 'package:ecommerce/Router/navigator_service.dart';
+import 'package:ecommerce/UI/catalogue_manager/catalogue_management_bloc.dart';
+import 'package:ecommerce/common/widget/button/custom_button.dart';
 import 'package:ecommerce/common/widget/forms/simple_input_form.dart';
 import 'package:ecommerce/common/widget/forms/text_editor.dart';
 import 'package:ecommerce/constant/constant.dart';
+import 'package:ecommerce/model/produt.dart';
 import 'package:flutter/material.dart';
+import 'package:html_editor_enhanced/html_editor.dart';
 
 import 'Components/expaned_tile.dart';
 
 class ProductPage extends StatefulWidget {
-  ProductPage({Key? key}) : super(key: key);
-
+  ProductPage({Key? key, this.product, required this.bloc}) : super(key: key);
+  final p.Product? product;
+  final CatalogueManagementBloc bloc;
   @override
   State<ProductPage> createState() => _ProductPageState();
 }
 
 class _ProductPageState extends State<ProductPage> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController title = TextEditingController();
+  HtmlEditorController descriptionController = HtmlEditorController();
+  TextEditingController price = TextEditingController();
+  TextEditingController comparePrice = TextEditingController();
+  TextEditingController costPerItem = TextEditingController();
+  TextEditingController sku = TextEditingController();
+  TextEditingController barcode = TextEditingController();
+  TextEditingController quantity = TextEditingController();
+  TextEditingController weight = TextEditingController();
+  TextEditingController country = TextEditingController();
+  TextEditingController hs = TextEditingController();
+  TextEditingController productCategory = TextEditingController();
+  TextEditingController productType = TextEditingController();
+  TextEditingController vendor = TextEditingController();
+  TextEditingController collections = TextEditingController();
+  TextEditingController tags = TextEditingController();
+  TextEditingController themeTemplate = TextEditingController();
+  String selectedValue = "Active";
+
+  List<DropdownMenuItem<String>> get dropdownItems {
+    List<DropdownMenuItem<String>> menuItems = [
+      DropdownMenuItem(child: Text("Active"), value: "Active"),
+      DropdownMenuItem(child: Text("InActive"), value: "InActive"),
+    ];
+    return menuItems;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.product != null) {
+      addValueToTextBox();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +77,9 @@ class _ProductPageState extends State<ProductPage> {
               ],
             ),
             bottomButton(context),
+            SizedBox(
+              height: 100,
+            )
           ],
         ),
       ),
@@ -51,7 +99,9 @@ class _ProductPageState extends State<ProductPage> {
                   "Title",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                subtitle: SimpleInputForm(),
+                subtitle: SimpleInputForm(
+                  textEditingController: title,
+                ),
               ),
               ListTile(
                 title: const Text(
@@ -59,7 +109,11 @@ class _ProductPageState extends State<ProductPage> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 subtitle: Container(
-                    color: Colors.white, height: 200, child: TextEditor()),
+                    color: Colors.white,
+                    height: 200,
+                    child: TextEditor(
+                      controller: descriptionController,
+                    )),
               ),
             ],
           ),
@@ -81,21 +135,30 @@ class _ProductPageState extends State<ProductPage> {
                     "Price",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  subtitle: SimpleInputForm(),
+                  subtitle: SimpleInputForm(
+                    textEditingController: price,
+                    keyboardType: TextInputType.number,
+                  ),
                 ),
                 ListTile(
                   title: const Text(
                     "Compare at price",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  subtitle: SimpleInputForm(),
+                  subtitle: SimpleInputForm(
+                    keyboardType: TextInputType.number,
+                    textEditingController: comparePrice,
+                  ),
                 ),
                 ListTile(
                   title: const Text(
                     "cost per item",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  subtitle: SimpleInputForm(),
+                  subtitle: SimpleInputForm(
+                    keyboardType: TextInputType.number,
+                    textEditingController: costPerItem,
+                  ),
                 ),
               ],
             ),
@@ -119,20 +182,24 @@ class _ProductPageState extends State<ProductPage> {
                       flex: 5,
                       child: ListTile(
                         title: const Text(
-                          "Name",
+                          "SKU",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        subtitle: SimpleInputForm(),
+                        subtitle: SimpleInputForm(
+                          textEditingController: sku,
+                        ),
                       ),
                     ),
                     Expanded(
                       flex: 5,
                       child: ListTile(
                         title: const Text(
-                          "Name",
+                          "Barcode",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        subtitle: SimpleInputForm(),
+                        subtitle: SimpleInputForm(
+                          textEditingController: barcode,
+                        ),
                       ),
                     ),
                   ],
@@ -166,7 +233,10 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                   Expanded(
                     flex: 5,
-                    child: SimpleInputForm(),
+                    child: SimpleInputForm(
+                      keyboardType: TextInputType.number,
+                      textEditingController: quantity,
+                    ),
                   ),
                 ]),
               ],
@@ -204,7 +274,10 @@ class _ProductPageState extends State<ProductPage> {
                   title: Text(
                     "Weight",
                   ),
-                  subtitle: SimpleInputForm(),
+                  subtitle: SimpleInputForm(
+                    keyboardType: TextInputType.number,
+                    textEditingController: weight,
+                  ),
                 ),
               ],
             ),
@@ -232,13 +305,15 @@ class _ProductPageState extends State<ProductPage> {
                   title: const Text(
                     "Country/Region of origin",
                   ),
-                  subtitle: SimpleInputForm(),
+                  subtitle: SimpleInputForm(
+                    textEditingController: country,
+                  ),
                 ),
                 ListTile(
                   title: const Text(
                     "HS (Harmonized System) code",
                   ),
-                  subtitle: SimpleInputForm(),
+                  subtitle: SimpleInputForm(textEditingController: hs),
                 ),
               ],
             ),
@@ -268,7 +343,15 @@ class _ProductPageState extends State<ProductPage> {
               children: [
                 ListTile(
                   title: Text(""),
-                  subtitle: SimpleInputForm(),
+                  subtitle: DropdownButton(
+                      value: selectedValue,
+                      style: TextStyle(fontSize: 30),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          selectedValue = newValue!;
+                        });
+                      },
+                      items: dropdownItems),
                 ),
                 Divider(
                   height: 1,
@@ -300,31 +383,41 @@ class _ProductPageState extends State<ProductPage> {
                   title: Text(
                     "Product Category",
                   ),
-                  subtitle: SimpleInputForm(),
+                  subtitle: SimpleInputForm(
+                    textEditingController: productCategory,
+                  ),
                 ),
                 ListTile(
                   title: Text(
                     "Product Type",
                   ),
-                  subtitle: SimpleInputForm(),
+                  subtitle: SimpleInputForm(
+                    textEditingController: productType,
+                  ),
                 ),
                 ListTile(
                   title: Text(
                     "Vendor",
                   ),
-                  subtitle: SimpleInputForm(),
-                ),
-                ListTile(
-                  title: Text(
-                    "Collections",
+                  subtitle: SimpleInputForm(
+                    textEditingController: vendor,
                   ),
-                  subtitle: SimpleInputForm(),
                 ),
+                // ListTile(
+                //   title: Text(
+                //     "Collections",
+                //   ),
+                //   subtitle: SimpleInputForm(
+                //     textEditingController: colle,
+                //   ),
+                // ),
                 ListTile(
                   title: Text(
                     "Tags",
                   ),
-                  subtitle: SimpleInputForm(),
+                  subtitle: SimpleInputForm(
+                    textEditingController: tags,
+                  ),
                 ),
               ],
             ),
@@ -344,7 +437,9 @@ class _ProductPageState extends State<ProductPage> {
                   title: Text(
                     "Theme template",
                   ),
-                  subtitle: SimpleInputForm(),
+                  subtitle: SimpleInputForm(
+                    textEditingController: themeTemplate,
+                  ),
                 ),
               ],
             ),
@@ -355,7 +450,75 @@ class _ProductPageState extends State<ProductPage> {
   }
 
   Widget bottomButton(BuildContext context) {
-    return Container();
+    return Container(
+      child: Align(
+        alignment: Alignment.bottomRight,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            if (widget.product != null)
+              SizedBox(
+                  width: 100,
+                  child: CustomDefaultButton(
+                    text: "Delete",
+                    press: () {
+                      widget.bloc.deleteProduct(widget.product!.id!);
+                    },
+                  )),
+            SizedBox(
+              width: 100,
+              child: CustomDefaultButton(
+                text: "Save",
+                press: () {
+                  if (_formKey.currentState!.validate()) {
+                    // ProductRequest request = ProductRequest(
+                    //   bodyHtml: descriptionController.getText().toString(),
+                    //   productType: productType.text,
+                    //   title: title.text,
+                    //   tags: [],
+                    //   vendor: '',
+                    // );
+                    r.ProductRequest request = r.ProductRequest(
+                        product: r.Product(
+                            title: title.text,
+                            bodyHtml:
+                                descriptionController.getText().toString(),
+                            vendor: "",
+                            productType: productType.text,
+                            tags: []));
+                    if (widget.product == null) {
+                      widget.bloc.addProduct(request);
+                    } else {
+                      widget.bloc.updateProduct(widget.product!.id!, request);
+                    }
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void addValueToTextBox() {
+    title.text = widget.product!.title ?? "";
+
+    // price.text = "";
+    // comparePrice.text =  "";
+    // costPerItem.text =  "";
+    // sku.text = widget.product ?? "";
+    // barcode.text = widget.product ?? "";
+    // quantity.text = widget.product ?? "";
+    // weight.text = widget.product ?? "";
+    // country.text = widget.product ?? "";
+    // hs.text = widget.product ?? "";
+    // productCategory.text = widget.product ?? "";
+    productType.text = widget.product!.productType ?? "";
+    // vendor.text = widget.product.vendor.fir ?? "";
+    // collections.text = widget.product ?? "";
+    // tags.text = widget.product ?? "";
+    // themeTemplate.text = widget.product ?? "";
   }
 }
 

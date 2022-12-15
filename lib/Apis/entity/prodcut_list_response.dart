@@ -39,6 +39,7 @@ class Product {
     required this.title,
     required this.bodyHtml,
     required this.vendor,
+    required this.status,
     required this.productType,
     required this.createdAt,
     required this.handle,
@@ -58,6 +59,7 @@ class Product {
   String? title;
   String? bodyHtml;
   String? vendor;
+  String? status;
   String? productType;
   DateTime? createdAt;
   String? handle;
@@ -77,6 +79,7 @@ class Product {
         title: json["title"] == null ? null : json["title"],
         bodyHtml: json["body_html"] == null ? null : json["body_html"],
         vendor: json["vendor"] == null ? null : json["vendor"],
+        status: json["status"] == null ? null : json["status"],
         productType: json["product_type"] == null ? null : json["product_type"],
         createdAt: json["created_at"] == null
             ? null
@@ -113,6 +116,7 @@ class Product {
         "title": title == null ? null : title,
         "body_html": bodyHtml == null ? null : bodyHtml,
         "vendor": vendor == null ? null : vendor,
+        "status": status == null ? null : status,
         "product_type": productType == null ? null : productType,
         "created_at": createdAt == null ? null : createdAt!.toIso8601String(),
         "handle": handle == null ? null : handle,

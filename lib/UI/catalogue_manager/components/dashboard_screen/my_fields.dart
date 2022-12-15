@@ -1,3 +1,4 @@
+import 'package:ecommerce/UI/catalogue_manager/catalogue_management_bloc.dart';
 import 'package:ecommerce/UI/catalogue_manager/components/Product/product_page.dart';
 import 'package:ecommerce/common/responsive.dart';
 import 'package:ecommerce/constant/constant.dart';
@@ -9,8 +10,9 @@ import 'file_info_card.dart';
 class MyFiles extends StatelessWidget {
   const MyFiles({
     Key? key,
+    required this.bloc,
   }) : super(key: key);
-
+  final CatalogueManagementBloc bloc;
   @override
   Widget build(BuildContext context) {
     final Size _size = MediaQuery.of(context).size;
@@ -92,7 +94,9 @@ class MyFiles extends StatelessWidget {
                                             MediaQuery.of(context).size.height -
                                                 100,
                                         child: SingleChildScrollView(
-                                            child: ProductPage())),
+                                            child: ProductPage(
+                                          bloc: bloc,
+                                        ))),
                                   )
                                 ]),
                               ));

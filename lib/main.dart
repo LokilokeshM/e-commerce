@@ -33,7 +33,7 @@ void main() async {
       ),
     ));
   }, (error, stack) => debugPrint(error.toString()));
-  _statusBarSetup();
+  // _statusBarSetup();
 }
 
 void _statusBarSetup() {

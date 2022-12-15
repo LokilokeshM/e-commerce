@@ -35,13 +35,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   flex: 5,
                   child: Column(
                     children: [
-                      const MyFiles(),
+                      MyFiles(
+                        bloc: widget.bloc,
+                      ),
                       const SizedBox(height: defaultPadding),
                       _bottomNavBar(),
                       const SizedBox(height: defaultPadding),
                       FilterScreen(),
                       const SizedBox(height: defaultPadding),
-                      RecentFiles(bloc: widget.bloc),
+                      RecentFiles(bloc: widget.bloc, context: context),
                       if (Responsive.isMobile(context))
                         const SizedBox(height: defaultPadding),
                       if (Responsive.isMobile(context)) const StorageDetails(),
@@ -75,7 +77,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Row _bottomNavBar() {
     return Row(children: [
       Expanded(
-        flex: 4,
+        flex: 10,
         child: BottomNavigationBar(
           elevation: 0,
           selectedItemColor: Colors.blue,
@@ -132,7 +134,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
       ),
       Expanded(
-        flex: 5,
+        flex: 3,
         child: Column(
           children: [
             Row(
