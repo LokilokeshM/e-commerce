@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SideMenu extends StatelessWidget {
-  const SideMenu({
-    Key? key,
-  }) : super(key: key);
-
+  SideMenu({Key? key, required this.onPress}) : super(key: key);
+  Function(String title) onPress;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -17,33 +15,43 @@ class SideMenu extends StatelessWidget {
           DrawerListTile(
             title: "Dashboard",
             svgSrc: "assets/icons/menu_dashbord.svg",
-            press: () {},
+            press: () {
+              onPress("Dashboard");
+            },
           ),
           DrawerListTile(
             title: "Products",
             svgSrc: "assets/icons/menu_tran.svg",
-            press: () {},
+            press: () {
+              onPress("Products");
+            },
           ),
           DrawerListTile(
             title: "Orders",
             svgSrc: "assets/icons/menu_task.svg",
-            press: () {},
+            press: () {
+              onPress("Orders");
+            },
           ),
           DrawerListTile(
             title: "Marketing Center",
             svgSrc: "assets/icons/menu_doc.svg",
-            press: () {},
+            press: () {
+              onPress("Marketing Center");
+            },
           ),
           // DrawerListTile(
           //   title: "",
           //   svgSrc: "assets/icons/menu_store.svg",
           //   press: () {},
           // ),
-          DrawerListTile(
-            title: "Notification",
-            svgSrc: "assets/icons/menu_notification.svg",
-            press: () {},
-          ),
+          // DrawerListTile(
+          //   title: "Notification",
+          //   svgSrc: "assets/icons/menu_notification.svg",
+          //   press: () {
+          //     onPress("Notification");
+          //   },
+          // ),
           // DrawerListTile(
           //   title: "Profile",
           //   svgSrc: "assets/icons/menu_profile.svg",
@@ -52,7 +60,9 @@ class SideMenu extends StatelessWidget {
           DrawerListTile(
             title: "Settings",
             svgSrc: "assets/icons/menu_setting.svg",
-            press: () {},
+            press: () {
+              onPress("Settings");
+            },
           ),
         ],
       ),

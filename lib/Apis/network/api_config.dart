@@ -13,6 +13,7 @@ const String listProductApi = "/products.json";
 const String shopifyBaseUrl =
     "https://aarkind-staging.myshopify.com/admin/api/2022-10";
 const String shopifyAccessToken = "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";
+const String countJson = "/count.json";
 
 enum APIFlavor { dev, qa, stage, stageBlue, prod }
 

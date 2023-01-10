@@ -72,7 +72,7 @@ class _CustomDefaultButtonState extends State<CustomDefaultButton> {
     }
 
     return SizedBox(
-      height: 52.h,
+      height: 30.h,
       width: 192.w,
       child: TextButton(
         onPressed: () {
@@ -88,9 +88,9 @@ class _CustomDefaultButtonState extends State<CustomDefaultButton> {
           child: Text(
             widget.text!,
             style: widget.textStyle ??
-                TextStyle(
-                    color: Colors.black,
-                    backgroundColor: Colors.green.shade100),
+                const TextStyle(
+                  color: Colors.black,
+                ),
             textAlign: widget.textAlign ?? TextAlign.center,
           ),
         ),

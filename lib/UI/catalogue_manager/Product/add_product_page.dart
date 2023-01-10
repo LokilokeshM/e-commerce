@@ -1,31 +1,26 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:html';
-
 import 'package:ecommerce/Apis/entity/prodcut_list_response.dart' as p;
 import 'package:ecommerce/Apis/entity_helper/add_product_request_body.dart'
     as r;
-import 'package:ecommerce/Router/navigator_service.dart';
 import 'package:ecommerce/UI/catalogue_manager/catalogue_management_bloc.dart';
 import 'package:ecommerce/common/widget/button/custom_button.dart';
 import 'package:ecommerce/common/widget/forms/simple_input_form.dart';
 import 'package:ecommerce/common/widget/forms/text_editor.dart';
 import 'package:ecommerce/constant/constant.dart';
-import 'package:ecommerce/model/produt.dart';
 import 'package:flutter/material.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 
-import 'Components/expaned_tile.dart';
-
-class ProductPage extends StatefulWidget {
-  ProductPage({Key? key, this.product, required this.bloc}) : super(key: key);
+class AddProductPage extends StatefulWidget {
+  AddProductPage({Key? key, this.product, required this.bloc})
+      : super(key: key);
   final p.Product? product;
   final CatalogueManagementBloc bloc;
   @override
-  State<ProductPage> createState() => _ProductPageState();
+  State<AddProductPage> createState() => _AddProductPageState();
 }
 
-class _ProductPageState extends State<ProductPage> {
+class _AddProductPageState extends State<AddProductPage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController title = TextEditingController();
   HtmlEditorController descriptionController = HtmlEditorController();

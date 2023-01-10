@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 class Chart extends StatelessWidget {
   const Chart({
     Key? key,
+    this.height = 200,
   }) : super(key: key);
-
+  final double height;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: height,
       child: Stack(
         children: [
           PieChart(
@@ -21,18 +22,18 @@ class Chart extends StatelessWidget {
               sections: paiChartSelectionDatas,
             ),
           ),
-          Positioned.fill(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: defaultPadding),
-                Text(
-                  "29.1",
-                ),
-                Text("of 128GB")
-              ],
-            ),
-          ),
+          // Positioned.fill(
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: [
+          //       SizedBox(height: defaultPadding),
+          //       Text(
+          //         "29.1",
+          //       ),
+          //       Text("of 128GB")
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );
@@ -42,31 +43,31 @@ class Chart extends StatelessWidget {
 List<PieChartSectionData> paiChartSelectionDatas = [
   PieChartSectionData(
     color: primaryColor,
-    value: 25,
+    value: 10,
     showTitle: false,
     radius: 25,
   ),
   PieChartSectionData(
     color: Color(0xFF26E5FF),
-    value: 20,
+    value: 15,
     showTitle: false,
     radius: 22,
   ),
   PieChartSectionData(
     color: Color(0xFFFFCF26),
-    value: 10,
+    value: 50,
     showTitle: false,
     radius: 19,
   ),
   PieChartSectionData(
     color: Color(0xFFEE2727),
-    value: 15,
+    value: 50,
     showTitle: false,
     radius: 16,
   ),
   PieChartSectionData(
     color: primaryColor.withOpacity(0.1),
-    value: 25,
+    value: 5,
     showTitle: false,
     radius: 13,
   ),

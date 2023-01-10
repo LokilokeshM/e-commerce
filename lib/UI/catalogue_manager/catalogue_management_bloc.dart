@@ -9,6 +9,30 @@ import 'package:ecommerce/app_provider/app_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/subjects.dart';
 
+const List<Tab> productTabs = <Tab>[
+  Tab(
+    text: "All",
+  ),
+  Tab(
+    text: "Active",
+  ),
+  Tab(
+    text: "InActive",
+  ),
+  Tab(
+    text: "Draft",
+  ),
+  Tab(
+    text: "Pending QC",
+  ),
+  Tab(
+    text: "Violation",
+  ),
+  Tab(
+    text: "Deleted",
+  ),
+];
+
 class CatalogueManagementBloc extends BlocBase {
   AppClient get api => AppProvider.getAppAPI();
 
@@ -16,7 +40,7 @@ class CatalogueManagementBloc extends BlocBase {
   final _productList = BehaviorSubject<List<Product>?>();
 
   void init() {
-    getProductList();
+    // getProductList();
   }
 
   Future<void> getProductList() async {

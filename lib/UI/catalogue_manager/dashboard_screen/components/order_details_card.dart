@@ -1,11 +1,11 @@
+import 'package:ecommerce/UI/catalogue_manager/dashboard_screen/components/chart.dart';
 import 'package:ecommerce/constant/constant.dart';
 import 'package:flutter/material.dart';
 
-import 'chart.dart';
-import 'storage_info_card.dart';
+import 'order_info_card.dart';
 
-class StorageDetails extends StatelessWidget {
-  const StorageDetails({
+class OrderDetailsCard extends StatelessWidget {
+  const OrderDetailsCard({
     Key? key,
   }) : super(key: key);
 
@@ -19,9 +19,9 @@ class StorageDetails extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: const [
           Text(
-            "Storage Details",
+            "Oder Details",
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
@@ -29,28 +29,28 @@ class StorageDetails extends StatelessWidget {
           ),
           SizedBox(height: defaultPadding),
           Chart(),
-          StorageInfoCard(
+          OrderInfoCard(
             svgSrc: "assets/icons/Documents.svg",
-            title: "Documents Files",
-            amountOfFiles: "1.3GB",
+            title: "Pending Orders",
+            orderCount: 1,
             numOfFiles: 1328,
           ),
-          StorageInfoCard(
+          OrderInfoCard(
             svgSrc: "assets/icons/media.svg",
-            title: "Media Files",
-            amountOfFiles: "15.3GB",
+            title: "Unpaid Orders",
+            orderCount: 15,
             numOfFiles: 1328,
           ),
-          StorageInfoCard(
+          OrderInfoCard(
             svgSrc: "assets/icons/folder.svg",
-            title: "Other Files",
-            amountOfFiles: "1.3GB",
+            title: "Pending Return/Refund",
+            orderCount: 50,
             numOfFiles: 1328,
           ),
-          StorageInfoCard(
+          OrderInfoCard(
             svgSrc: "assets/icons/unknown.svg",
-            title: "Unknown",
-            amountOfFiles: "1.3GB",
+            title: "To be Reviewed",
+            orderCount: 50,
             numOfFiles: 140,
           ),
         ],

@@ -1,12 +1,9 @@
-import 'dart:js';
-
 import 'package:ecommerce/Apis/entity/prodcut_list_response.dart' as p;
 import 'package:ecommerce/UI/catalogue_manager/catalogue_management_bloc.dart';
 import 'package:ecommerce/constant/constant.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
-import '../Product/product_page.dart';
+import '../add_product_page.dart';
 
 class RecentFiles extends StatefulWidget {
   const RecentFiles({
@@ -73,6 +70,11 @@ class _RecentFilesState extends State<RecentFiles> {
                           "Vendor",
                         ),
                       ),
+                      DataColumn(
+                        label: Text(
+                          "Action",
+                        ),
+                      ),
                     ],
                     rows: snapshot.data != null
                         ? List.generate(
@@ -131,7 +133,7 @@ class _RecentFilesState extends State<RecentFiles> {
                             width: MediaQuery.of(context).size.width - 200,
                             height: MediaQuery.of(context).size.height - 100,
                             child: SingleChildScrollView(
-                                child: ProductPage(
+                                child: AddProductPage(
                                     product: product, bloc: widget.bloc))),
                       )
                     ]),
@@ -172,6 +174,13 @@ class _RecentFilesState extends State<RecentFiles> {
         )),
         DataCell(Text(
           product.vendor ?? "",
+        )),
+        DataCell(Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.delete))
+          ],
         )),
       ],
     );

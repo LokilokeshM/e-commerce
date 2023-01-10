@@ -2,18 +2,21 @@ import 'package:ecommerce/constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class StorageInfoCard extends StatelessWidget {
-  const StorageInfoCard({
-    Key? key,
-    required this.title,
-    required this.svgSrc,
-    required this.amountOfFiles,
-    required this.numOfFiles,
-  }) : super(key: key);
+class TopSellingInfo {
+  final String? title, imageSrc;
+  final int? orderCount;
+  final String? price;
+  TopSellingInfo({
+    this.title = "",
+    this.imageSrc = "",
+    this.orderCount = 0,
+    this.price = "",
+  });
+}
 
-  final String title, svgSrc, amountOfFiles;
-  final int numOfFiles;
-
+class TopSellingInfoCard extends StatelessWidget {
+  const TopSellingInfoCard({Key? key, required this.info}) : super(key: key);
+  final TopSellingInfo info;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,9 +31,9 @@ class StorageInfoCard extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            height: 20,
-            width: 20,
-            child: SvgPicture.asset(svgSrc),
+            height: 50,
+            width: 50,
+            child: Image.network(info.imageSrc ?? ""),
           ),
           Expanded(
             child: Padding(
@@ -39,22 +42,22 @@ class StorageInfoCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    title,
+                    info.title ?? "",
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
-                    "$numOfFiles Files",
-                    style: Theme.of(context)
-                        .textTheme
-                        .caption!
-                        .copyWith(color: Colors.black),
+                    "Rs.${info.price ?? ""}",
+                    style: Theme.of(context).textTheme.caption!.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16),
                   ),
                 ],
               ),
             ),
           ),
-          Text(amountOfFiles)
+          Text(info.orderCount.toString())
         ],
       ),
     );

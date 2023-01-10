@@ -8,8 +8,9 @@ import 'package:provider/provider.dart';
 class Header extends StatelessWidget {
   const Header({
     Key? key,
+    required this.onTap,
   }) : super(key: key);
-
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -30,43 +31,50 @@ class Header extends StatelessWidget {
         if (!Responsive.isMobile(context))
           Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
         Expanded(child: SearchField()),
-        ProfileCard()
+        InkWell(
+          onTap: onTap,
+          child: CircleAvatar(
+            child: Image.asset(
+              "assets/images/profile_pic.png",
+              height: 38,
+            ),
+          ),
+        )
       ],
     );
   }
 }
 
 class ProfileCard extends StatelessWidget {
-  const ProfileCard({
-    Key? key,
-  }) : super(key: key);
-
+  const ProfileCard({Key? key, required this.onTap}) : super(key: key);
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: defaultPadding),
-      padding: const EdgeInsets.symmetric(
-        horizontal: defaultPadding,
-        vertical: defaultPadding / 2,
-      ),
       decoration: BoxDecoration(
         color: secondaryColor,
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
         border: Border.all(color: Colors.black),
       ),
       child: Row(
         children: [
-          Image.asset(
-            "assets/images/profile_pic.png",
-            height: 38,
-          ),
-          if (!Responsive.isMobile(context))
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-              child: Text("Dot & Key"),
+          InkWell(
+            onTap: onTap,
+            child: CircleAvatar(
+              child: Image.asset(
+                "assets/images/profile_pic.png",
+                height: 38,
+              ),
             ),
-          Icon(Icons.keyboard_arrow_down),
+          ),
+          // if (!Responsive.isMobile(context))
+          //   Padding(
+          //     padding:
+          //         const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+          //     child: Text("Dot & Key"),
+          //   ),
+          // Icon(Icons.keyboard_arrow_down),
         ],
       ),
     );

@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:ecommerce/Apis/entity/count_entity.dart';
+import 'package:ecommerce/Apis/entity/order_list_response.dart';
 import 'package:ecommerce/Apis/entity/prodcut_list_response.dart' as p;
 import 'package:ecommerce/Apis/entity/product_collect_list.dart';
 import 'package:ecommerce/Apis/entity/product_image_list.dart';
@@ -47,11 +49,25 @@ class AppAPIClient extends AppClient with APIBasic {
       requestCallWithDetails(
           (_) => getApi().updateProduct(id, addProductRequest));
 
-  // AppApiClient getApi() =>
-  //     AppApiClient(_getAppDio(), baseUrl: APIConfig.demoApi);
+  @override
+  Future<CommonResponse<OrderList>> getOrderListStatus({String? status}) =>
+      requestCallWithDetails(
+          (_) => getApi().getOrderListStatus(status: status ?? "?status=any"));
+  @override
+  Future<CommonResponse<OrderList>> getOrderListFinancialStatus(
+          {String? financialStatus}) =>
+      requestCallWithDetails((_) => getApi().getOrderListFinancialStatus(
+          financialStatus: financialStatus ?? "?financialStatus=any"));
 
-  // @override
-  // Future<CommonResponse<User>> getAppDetails() {
-  //   return requestCallWithDetails((_) => getApi().getUsers(), "");
-  // }
+  @override
+  Future<CommonResponse<CountEntity>> getCustomerCount() =>
+      requestCallWithDetails((_) => getApi().getCustomerCount());
+
+  @override
+  Future<CommonResponse<CountEntity>> getOrderCount() =>
+      requestCallWithDetails((_) => getApi().getOrderCount());
+
+  @override
+  Future<CommonResponse<CountEntity>> getProductCount() =>
+      requestCallWithDetails((_) => getApi().getProductCount());
 }

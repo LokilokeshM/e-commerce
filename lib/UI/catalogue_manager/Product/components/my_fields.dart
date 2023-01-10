@@ -1,11 +1,11 @@
+import 'package:ecommerce/UI/catalogue_manager/Product/add_product_page.dart';
 import 'package:ecommerce/UI/catalogue_manager/catalogue_management_bloc.dart';
-import 'package:ecommerce/UI/catalogue_manager/components/Product/product_page.dart';
 import 'package:ecommerce/common/responsive.dart';
 import 'package:ecommerce/constant/constant.dart';
 import 'package:ecommerce/model/MyFiles.dart';
 import 'package:flutter/material.dart';
 
-import 'file_info_card.dart';
+import '../../dashboard_screen/components/file_info_card.dart';
 
 class MyFiles extends StatelessWidget {
   const MyFiles({
@@ -94,7 +94,7 @@ class MyFiles extends StatelessWidget {
                                             MediaQuery.of(context).size.height -
                                                 100,
                                         child: SingleChildScrollView(
-                                            child: ProductPage(
+                                            child: AddProductPage(
                                           bloc: bloc,
                                         ))),
                                   )
@@ -121,33 +121,6 @@ class MyFiles extends StatelessWidget {
         //   ),
         // ),
       ],
-    );
-  }
-}
-
-class FileInfoCardGridView extends StatelessWidget {
-  const FileInfoCardGridView({
-    Key? key,
-    this.crossAxisCount = 4,
-    this.childAspectRatio = 1,
-  }) : super(key: key);
-
-  final int crossAxisCount;
-  final double childAspectRatio;
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: demoMyFiles.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
-        crossAxisSpacing: defaultPadding,
-        mainAxisSpacing: defaultPadding,
-        childAspectRatio: childAspectRatio,
-      ),
-      itemBuilder: (context, index) => FileInfoCard(info: demoMyFiles[index]),
     );
   }
 }
