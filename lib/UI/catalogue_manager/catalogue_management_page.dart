@@ -33,7 +33,9 @@ class _CatalogueManaganemtPageState extends State<CatalogueManaganemtPage> {
     _context = context;
     return Scaffold(
       key: context.read<MenuController>().scaffoldKey,
-      drawer: SideMenu(onPress: sideMenuOnPress),
+      drawer: SideMenu(
+          // onPress: sideMenuOnPress
+          ),
       body: SafeArea(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,15 +46,23 @@ class _CatalogueManaganemtPageState extends State<CatalogueManaganemtPage> {
                 // default flex = 1
                 // and it takes 1/6 part of the screen
                 child: SideMenu(
-                  onPress: sideMenuOnPress,
-                ),
+                    // onPress: sideMenuOnPress,
+                    ),
               ),
 
             Expanded(
               // It takes 5/6 part of the screen
               flex: 5,
-              child: switchScreen(),
-            ),
+              child: Material(
+                  child: Navigator(
+                onGenerateRoute: (_) =>
+                    MaterialPageRoute(builder: (materialContext) {
+                  return Builder(builder: (builderContext) {
+                    return OrderPage();
+                  });
+                }),
+              )),
+            )
           ],
         ),
       ),
@@ -83,18 +93,18 @@ class _CatalogueManaganemtPageState extends State<CatalogueManaganemtPage> {
     }
   }
 
-  sideMenuOnPress(String title) {
-    List<String> sideMenu = [
-      "",
-      "Dashboard",
-      "Products",
-      "Orders",
-      "Marketing Center",
-      "Notification",
-      "Settings",
-    ];
-    setState(() {
-      index = sideMenu.indexOf(title);
-    });
-  }
+  // sideMenuOnPress(String title) {
+  //   List<String> sideMenu = [
+  //     "",
+  //     "Dashboard",
+  //     "Products",
+  //     "Orders",
+  //     "Marketing Center",
+  //     "Notification",
+  //     "Settings",
+  //   ];
+  //   setState(() {
+  //     index = sideMenu.indexOf(title);
+  //   });
+  // }
 }

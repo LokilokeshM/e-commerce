@@ -4,6 +4,7 @@ import 'package:ecommerce/UI/catalogue_manager/components/header.dart';
 
 import 'package:ecommerce/common/responsive.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../constant/constant.dart';
 import 'components/filter_screen.dart';
@@ -29,57 +30,66 @@ class _ProductPageState extends State<ProductPage> {
   // int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          primary: false,
-          padding: const EdgeInsets.all(defaultPadding),
-          child: Column(
-            children: [
-              Header(buildContext: context),
-              const SizedBox(height: defaultPadding),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: Column(
-                      children: [
-                        MyFiles(
-                          bloc: widget.bloc,
-                        ),
-                        const SizedBox(height: defaultPadding),
-                        // _bottomNavBar(),
-                        SizedBox(
-                            height: 100,
-                            child: MyTabbedPage(
-                              tabs: productTabs,
-                              onTap: () {},
-                            )),
-                        const SizedBox(height: defaultPadding),
-                        FilterScreen(),
-                        const SizedBox(height: defaultPadding),
-                        RecentFiles(bloc: widget.bloc, context: context),
-                        if (Responsive.isMobile(context))
-                          const SizedBox(height: defaultPadding),
-                        // if (Responsive.isMobile(context))
-                        //   const StorageDetails(),
-                      ],
-                    ),
+    return Material(
+      child: Navigator(
+        onGenerateRoute: (_) => MaterialPageRoute(builder: (materialContext) {
+          return Builder(builder: (builderContext) {
+            return Scaffold(
+              body: SafeArea(
+                child: SingleChildScrollView(
+                  primary: false,
+                  padding: const EdgeInsets.all(defaultPadding),
+                  child: Column(
+                    children: [
+                      Header(buildContext: context),
+                      const SizedBox(height: defaultPadding),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            flex: 5,
+                            child: Column(
+                              children: [
+                                MyFiles(
+                                  bloc: widget.bloc,
+                                ),
+                                const SizedBox(height: defaultPadding),
+                                // _bottomNavBar(),
+                                SizedBox(
+                                    height: 100,
+                                    child: MyTabbedPage(
+                                      tabs: productTabs,
+                                      onTap: () {},
+                                    )),
+                                const SizedBox(height: defaultPadding),
+                                FilterScreen(),
+                                const SizedBox(height: defaultPadding),
+                                RecentFiles(
+                                    bloc: widget.bloc, context: context),
+                                if (Responsive.isMobile(context))
+                                  const SizedBox(height: defaultPadding),
+                                // if (Responsive.isMobile(context))
+                                //   const StorageDetails(),
+                              ],
+                            ),
+                          ),
+                          // if (!Responsive.isMobile(context))
+                          //   SizedBox(width: defaultPadding),
+                          // On Mobile means if the screen is less than 850 we dont want to show it
+                          // if (!Responsive.isMobile(context))
+                          //   Expanded(
+                          //     flex: 2,
+                          //     child: StarageDetails(),
+                          //   ),
+                        ],
+                      )
+                    ],
                   ),
-                  // if (!Responsive.isMobile(context))
-                  //   SizedBox(width: defaultPadding),
-                  // On Mobile means if the screen is less than 850 we dont want to show it
-                  // if (!Responsive.isMobile(context))
-                  //   Expanded(
-                  //     flex: 2,
-                  //     child: StarageDetails(),
-                  //   ),
-                ],
-              )
-            ],
-          ),
-        ),
+                ),
+              ),
+            );
+          });
+        }),
       ),
     );
   }

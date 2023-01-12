@@ -1,9 +1,13 @@
+import 'package:ecommerce/UI/catalogue_manager/Product/product_page.dart';
+import 'package:ecommerce/UI/catalogue_manager/catalogue_management_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SideMenu extends StatelessWidget {
-  SideMenu({Key? key, required this.onPress}) : super(key: key);
-  Function(String title) onPress;
+  SideMenu({
+    Key? key,
+  }) : super(key: key);
+  // Function(String title) onPress;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -16,28 +20,32 @@ class SideMenu extends StatelessWidget {
             title: "Dashboard",
             svgSrc: "assets/icons/menu_dashbord.svg",
             press: () {
-              onPress("Dashboard");
+              // onPress("Dashboard");
             },
           ),
           DrawerListTile(
             title: "Products",
             svgSrc: "assets/icons/menu_tran.svg",
             press: () {
-              onPress("Products");
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => ProductPage(
+                  bloc: CatalogueManagementBloc(),
+                ),
+              ));
             },
           ),
           DrawerListTile(
             title: "Orders",
             svgSrc: "assets/icons/menu_task.svg",
             press: () {
-              onPress("Orders");
+              // onPress("Orders");
             },
           ),
           DrawerListTile(
             title: "Marketing Center",
             svgSrc: "assets/icons/menu_doc.svg",
             press: () {
-              onPress("Marketing Center");
+              // onPress("Marketing Center");
             },
           ),
           // DrawerListTile(
@@ -61,7 +69,7 @@ class SideMenu extends StatelessWidget {
             title: "Settings",
             svgSrc: "assets/icons/menu_setting.svg",
             press: () {
-              onPress("Settings");
+              // onPress("Settings");
             },
           ),
         ],
